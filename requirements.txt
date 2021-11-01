@@ -18,4 +18,4 @@ tweepy==4.1.0
 zict==2.0.0
 flask==2.0.2
 prefect==0.15.7
-click==8.0.3
+click==7.1.2
