@@ -42,19 +42,23 @@ def load(collection_name, tweets):
 
 
 def build_flow():
-    schedule = IntervalSchedule(interval=timedelta(minutes=1))
+    schedule = IntervalSchedule(interval=timedelta(minutes=15))
 
     with Flow('ETL', schedule) as _flow:
         _zara_tweets = extract(q='@zara')
         _hm_tweets = extract(q='@hm')
         _mango_tweets = extract(q='@Mango')
+        _nike_tweets = extract(q='@Nike')
+        _adidas_tweets = extract(q='@adidas')
 
-        _zara_tweets = transform(_zara_tweets)
-        _hm_tweets = transform(_hm_tweets)
-        _mango_tweets = transform(_mango_tweets)
-
-        load('comments', _zara_tweets)
-        load('HM', _hm_tweets)
-        load('Mango', _mango_tweets)
+        load('zara', _zara_tweets)
+        load('hm', _hm_tweets)
+        load('mango', _mango_tweets)
+        load('nike', _nike_tweets)
+        load('adidas', _adidas_tweets)
 
     return _flow
+
+
+flow = build_flow()
+flow.run()

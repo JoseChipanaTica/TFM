@@ -14,10 +14,10 @@ class Twitter:
         self.database = Database(collection_name='HM')
 
     def search_by_word(self, q='', max_id=None):
-        return self.api.search_tweets(q=q, lang='es', result_type='recent', max_id=max_id)
+        return self.api.search_tweets(q=q, lang='es', result_type='recent')
 
     def get_tweets(self, max_id=None):
-        tweets = self.search_by_word(q='@hm', max_id=max_id)
+        tweets = self.search_by_word(q='@hm')
 
         for tw in tweets:
             self.database.save_document(tw._json)
