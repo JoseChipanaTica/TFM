@@ -1,7 +1,7 @@
 from prefect import task, Flow
 from datetime import timedelta
 from prefect.schedules import IntervalSchedule
-from twitter.twitter import Twitter
+from apps.twitter.twitter import Twitter
 from database.connect import Database
 
 twitter_extractor = Twitter()
@@ -42,7 +42,7 @@ def load(collection_name, tweets):
 
 
 def build_flow():
-    schedule = IntervalSchedule(interval=timedelta(minutes=15))
+    schedule = IntervalSchedule(interval=timedelta(minutes=10))
 
     with Flow('ETL', schedule) as _flow:
         _zara_tweets = extract(q='@zara')
