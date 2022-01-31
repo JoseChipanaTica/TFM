@@ -85,8 +85,8 @@ def show_pca(df: pd.DataFrame):
     return px.scatter(x=df['PCA1'], y=df['PCA2'], color=df['topic'])
 
 
-df_zara = s3.load_file('zara_features.csv', 'csv')
-df_topic = s3.load_file('topic.csv', 'csv')
+df_zara = load_file('zara_features.csv', 'csv')
+df_topic = load_file('topic.csv', 'csv')
 st.set_page_config(layout="wide")
 
 st.title('Bienvenido a nuestro proyecto ZARA')
@@ -96,17 +96,17 @@ st.write(f'Cantidad de registros obtenidos {df_zara.shape[0]}')
 # Start Show Words Gram plots
 
 df_text = df_zara[['comment']].dropna().drop_duplicates()['comment']
-df_ngram_1 = utils.generate_ngrams(df_text, 1)
-df_ngram_2 = utils.generate_ngrams(df_text, 2)
+df_ngram_1 = generate_ngrams(df_text, 1)
+df_ngram_2 = generate_ngrams(df_text, 2)
 
-plot_ngram = utils.plot_ngrams(df_ngram_1, df_ngram_2, 20)
+plot_ngram = plot_ngrams(df_ngram_1, df_ngram_2, 20)
 
 st.subheader('Palabras más concurrentes (UniGram) y (BiGram)')
 st.pyplot(plot_ngram)
 
 st.subheader('Topicos')
 st.dataframe(df_topic)
-st.plotly_chart(utils.show_pca(df_topic), use_container_width=True)
+st.plotly_chart(show_pca(df_topic), use_container_width=True)
 # End
 
 row1, row2, row3 = st.columns(3)
