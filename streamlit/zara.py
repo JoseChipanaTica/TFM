@@ -12,7 +12,9 @@ import seaborn as sns
 from collections import defaultdict
 import nltk
 
-stopwords = nltk.download('stopwords')
+nltk.download('stopwords')
+
+from nltk.corpus import stopwords
 
 plt.tight_layout()
 plt.style.use('dark_background')
