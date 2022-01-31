@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-from utils import utils, s3
 import logging
 import os
 import boto3
