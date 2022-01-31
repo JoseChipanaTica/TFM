@@ -11,7 +11,8 @@ import seaborn as sns
 
 from collections import defaultdict
 import nltk
-from nltk.corpus import stopwords
+
+stopwords = nltk.download('stopwords')
 
 plt.tight_layout()
 plt.style.use('dark_background')
