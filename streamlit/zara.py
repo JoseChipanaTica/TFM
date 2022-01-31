@@ -10,6 +10,7 @@ from botocore.exceptions import ClientError
 import seaborn as sns
 
 from collections import defaultdict
+import nltk
 from nltk.corpus import stopwords
 
 plt.tight_layout()
