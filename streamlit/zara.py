@@ -19,8 +19,8 @@ from nltk.corpus import stopwords
 plt.tight_layout()
 plt.style.use('dark_background')
 
-s3 = boto3.client('s3', aws_access_key_id='AKIA25ZCC7LDUWZTJEMQ',
-                  aws_secret_access_key='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')
+s3 = boto3.client('s3', aws_access_key_id='AKIA25ZCC7LDUS4H54NU',
+                  aws_secret_access_key='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')
 
 
 def load_file(file: str, type='json'):
