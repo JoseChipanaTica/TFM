@@ -19,8 +19,8 @@ from nltk.corpus import stopwords
 plt.tight_layout()
 plt.style.use('dark_background')
 
-s3 = boto3.client('s3', aws_access_key_id='AKIA25ZCC7LDUS4H54NU',
-                  aws_secret_access_key='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')
+s3 = boto3.client('s3', aws_access_key_id='AKIA25ZCC7LD4EQX2M4F',
+                  aws_secret_access_key='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')
 
 
 def load_file(file: str, type='json'):
@@ -75,9 +75,6 @@ def plot_ngrams(df_gram1: pd.DataFrame, df_gram2: pd.DataFrame, n: int = 20):
         axes[i].tick_params(axis='x', labelsize=13)
         axes[i].tick_params(axis='y', labelsize=13)
 
-    # axes[0].set_title(f'Top {n} most common unigrams in less_toxic comments', fontsize=15)
-    # axes[1].set_title(f'Top {n} most common unigrams in more_toxic comments', fontsize=15)
-
     return plt
 
 
@@ -130,7 +127,6 @@ with row3:
     st.dataframe(df_emojis)
     st.write(f'Cantidad de comentarios con etiquetas {df_emojis.shape[0]}')
 
-lang_input = st.sidebar.multiselect('Idioma', df_zara.lang.unique())
 year_input = st.sidebar.selectbox('Año', list(reversed(range(2021, 2023))))
 
 
@@ -140,7 +136,7 @@ def filter_by_year(year):
 
 
 @st.cache
-def filter_by_month(year, month, lang):
+def filter_by_month(year, month):
     return df_zara[(df_zara['Year'] == year) & (df_zara['Month'].isin(month))]
 
 
@@ -166,7 +162,7 @@ month_select = sorted(df_zara_filter['Month'].unique())
 
 month_input = st.sidebar.multiselect('Mes', month_select)
 
-df_zara_filter: pd.DataFrame = filter_by_month(year_input, month_input, lang_input)
+df_zara_filter: pd.DataFrame = filter_by_month(year_input, month_input)
 
 st.subheader('Dataframe Filtrado')
 st.dataframe(df_zara_filter)
