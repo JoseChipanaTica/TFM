@@ -82,11 +82,27 @@ def show_pca(df: pd.DataFrame):
     return px.scatter(x=df['PCA1'], y=df['PCA2'], color=df['topic'])
 
 
+st.set_page_config(layout="wide")
+st.title('Bienvenido a nuestro proyecto ZARA')
+
+st.subheader('Zara Análisis de Sentimientos')
+st.write('Como podemos observar como Racismo o Racista que tiene un fuerte impacto en los comentarios')
+
+df_zara_pred_sentimental = load_file('zara_pnl_pred.csv', 'csv')
+df_zara_perc_sentimental = load_file('zara_pnl_percent.csv', 'csv')
+
+row1Senti, row2Senti = st.columns(2)
+
+with row1Senti:
+    st.dataframe(df_zara_pred_sentimental)
+
+with row2Senti:
+    st.dataframe(df_zara_perc_sentimental)
+
 df_zara = load_file('zara_features.csv', 'csv')
 df_topic = load_file('topic.csv', 'csv')
-st.set_page_config(layout="wide")
 
-st.title('Bienvenido a nuestro proyecto ZARA')
+st.subheader('Zara tópicos')
 st.dataframe(df_zara)
 st.write(f'Cantidad de registros obtenidos {df_zara.shape[0]}')
 
@@ -239,3 +255,18 @@ fig, ax = plt.subplots()
 ax.imshow(wc, interpolation='bilinear')
 ax.axis("off")
 st.pyplot(fig)
+
+
+st.title('Análisis de Sentimiento de H&M')
+
+st.subheader('H&M Análisis de Sentimientos')
+df_hm_pred_sentimental = load_file('hm_pnl_pred.csv', 'csv')
+df_hm_perc_sentimental = load_file('hm_pnl_percent.csv', 'csv')
+
+row1Senti, row2Senti = st.columns(2)
+
+with row1Senti:
+    st.dataframe(df_hm_pred_sentimental)
+
+with row2Senti:
+    st.dataframe(df_hm_perc_sentimental)
